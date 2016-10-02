@@ -17,7 +17,7 @@ class PostsNew extends Component {
 			.then(() => {
 				// Blog post has been created, navigate user to
 				// the index by calling this.context.router.push
-				this.context.router.push('/');
+				this.context.router.push('/react-blog');
 			});
 	}
 
@@ -66,7 +66,7 @@ class PostsNew extends Component {
 				<div className="form-buttons">
 					<RaisedButton className="submit-form-button" type="submit" label="Submit" primary={true} />
 
-					<Link to="/">
+					<Link to="/react-blog">
 						<RaisedButton className="cancel-form-button" label="Cancel" secondary={true} />
 					</Link>
 				</div>

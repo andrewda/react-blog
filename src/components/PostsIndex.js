@@ -15,7 +15,7 @@ class PostsIndex extends Component {
 
 	renderPosts() {
 		return this.props.posts.map((post) => {
-			const postUrl = `/posts/${post.id}`;
+			const postUrl = `/react-blog/posts/${post.id}`;
 
 			return (
 				<Card key={post.id}>
@@ -36,7 +36,7 @@ class PostsIndex extends Component {
 		return (
 			<div>
 				<div className="new-post-button">
-					<Link to="/posts/new">
+					<Link to="/react-blog/posts/new">
 						<RaisedButton label="New Post" primary={true} />
 					</Link>
 				</div>

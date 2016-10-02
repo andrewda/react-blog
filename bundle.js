@@ -38982,7 +38982,7 @@
 			key: 'renderPosts',
 			value: function renderPosts() {
 				return this.props.posts.map(function (post) {
-					var postUrl = '/posts/' + post.id;
+					var postUrl = '/react-blog/posts/' + post.id;
 
 					return _react2.default.createElement(
 						_Card.Card,
@@ -39013,7 +39013,7 @@
 						{ className: 'new-post-button' },
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/posts/new' },
+							{ to: '/react-blog/posts/new' },
 							_react2.default.createElement(_RaisedButton2.default, { label: 'New Post', primary: true })
 						)
 					),
@@ -44881,7 +44881,7 @@
 				this.props.createPost(props).then(function () {
 					// Blog post has been created, navigate user to
 					// the index by calling this.context.router.push
-					_this2.context.router.push('/');
+					_this2.context.router.push('/react-blog');
 				});
 			}
 		}, {
@@ -44938,7 +44938,7 @@
 						_react2.default.createElement(_RaisedButton2.default, { className: 'submit-form-button', type: 'submit', label: 'Submit', primary: true }),
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/' },
+							{ to: '/react-blog' },
 							_react2.default.createElement(_RaisedButton2.default, { className: 'cancel-form-button', label: 'Cancel', secondary: true })
 						)
 					)
@@ -46426,7 +46426,7 @@
 				var _this2 = this;
 
 				this.props.deletePost(this.props.params.id).then(function () {
-					_this2.context.router.push('/');
+					_this2.context.router.push('/react-blog');
 				});
 			}
 		}, {
@@ -46448,7 +46448,7 @@
 					null,
 					_react2.default.createElement(
 						_reactRouter.Link,
-						{ to: '/' },
+						{ to: '/react-blog' },
 						_react2.default.createElement(_RaisedButton2.default, { className: 'back-button', label: 'Back', primary: true })
 					),
 					_react2.default.createElement(_RaisedButton2.default, {

@@ -19,7 +19,7 @@ class PostsShow extends Component {
 	onDeleteClick() {
 		this.props.deletePost(this.props.params.id)
 			.then(() => {
-				this.context.router.push('/');
+				this.context.router.push('/react-blog');
 			});
 	}
 
@@ -34,7 +34,7 @@ class PostsShow extends Component {
 
 		return (
 			<div>
-				<Link to="/">
+				<Link to="/react-blog">
 					<RaisedButton className="back-button" label="Back" primary={true} />
 				</Link>
 
