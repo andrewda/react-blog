@@ -1,0 +1,35 @@
+body {
+	padding-top: 20px;
+	background-color: #ecf0f1 !important;
+}
+
+.post-list > * {
+	margin-bottom: 10px;
+}
+
+.new-post-button {
+	position: relative;
+	float: right;
+	top: -10px;
+}
+
+.back-button {
+	margin-bottom: 20px;
+}
+
+.delete-button {
+	position: relative;
+	float: right;
+}
+
+.input-field {
+	width: 100% !important;
+}
+
+.form-buttons {
+	margin-top: 25px;
+}
+
+.submit-form-button {
+	margin-right: 10px;
+}
