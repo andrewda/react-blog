@@ -15,7 +15,6 @@ class PostsIndex extends Component {
 
 	renderPosts() {
 		return this.props.posts.map((post) => {
-			console.log(post)
 			const postUrl = `/posts/${post.id}`;
 
 			return (
