@@ -3,6 +3,10 @@ body {
 	background-color: #ecf0f1 !important;
 }
 
+.post-list {
+	margin-top: 20px
+}
+
 .post-list > * {
 	margin-bottom: 10px;
 }
