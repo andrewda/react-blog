@@ -6,13 +6,7 @@ import { Card, CardActions, CardHeader } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { fetchPosts } from '../actions';
-
 class PostsIndex extends Component {
-	componentWillMount() {
-		this.props.fetchPosts();
-	}
-
 	renderPosts() {
 		return this.props.posts.map((post) => {
 			const postUrl = `/posts/${post.id}`;
@@ -55,4 +49,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps)(PostsIndex);
