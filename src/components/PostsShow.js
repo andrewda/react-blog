@@ -11,12 +11,19 @@ class PostsShow extends Component {
 		router: PropTypes.object
 	};
 
+	constructor(props) {
+		super(props);
+
+		this.state = { deleteEnabled: true };
+	}
+
 	componentWillMount() {
-		this.props.resetPost();
 		this.props.fetchPost(this.props.params.id);
 	}
 
 	onDeleteClick() {
+		this.setState({ deleteEnabled: false });
+
 		this.props.deletePost(this.props.params.id)
 			.then(() => {
 				this.context.router.push('/');
@@ -41,6 +48,7 @@ class PostsShow extends Component {
 				<RaisedButton
 					onClick={this.onDeleteClick.bind(this)}
 					className="delete-button"
+					disabled={!this.state.deleteEnabled}
 					label="Delete"
 					secondary={true} />
 
@@ -58,4 +66,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { fetchPost, resetPost, deletePost })(PostsShow);
+export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow);

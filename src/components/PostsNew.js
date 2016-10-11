@@ -36,7 +36,14 @@ class PostsNew extends Component {
 		router: PropTypes.object
 	};
 
+	constructor(props) {
+		super(props);
+
+		this.state = { submitEnabled: true };
+	}
+
 	onFormSubmit(props) {
+		this.setState({ submitEnabled: false });
 		this.props.createPost(props)
 			.then(() => {
 				this.context.router.push('/');
@@ -70,10 +77,18 @@ class PostsNew extends Component {
 				<h3>Create New Post</h3>
 				{ _.map(FIELDS, this.renderField.bind(this)) }
 				<div className="form-buttons">
-					<RaisedButton className="submit-form-button" type="submit" label="Submit" primary={true} />
+					<RaisedButton
+						className="submit-form-button"
+						type="submit"
+						disabled={!this.state.submitEnabled}
+						label="Submit"
+						primary={true} />
 
 					<Link to="/">
-						<RaisedButton className="cancel-form-button" label="Cancel" secondary={true} />
+						<RaisedButton
+							className="cancel-form-button"
+							label="Cancel"
+							secondary={true} />
 					</Link>
 				</div>
 			</form>
