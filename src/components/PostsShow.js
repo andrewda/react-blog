@@ -54,7 +54,7 @@ class PostsShow extends Component {
 
 function mapStateToProps(state) {
 	return {
-		post: state.posts.post
+		post: state.selectedPost
 	};
 }
 

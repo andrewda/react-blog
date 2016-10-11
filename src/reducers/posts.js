@@ -1,15 +1,11 @@
-import { FETCH_POSTS, FETCH_POST, RESET_POST } from '../actions';
+import { FETCH_POSTS } from '../actions';
 
-const INITIAL_STATE = { all: [], post: null };
+const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
 		case FETCH_POSTS:
-			return { ...state, all: action.payload.data }
-		case FETCH_POST:
-			return { ...state, post: action.payload.data }
-		case RESET_POST:
-			return { ...state, post: null }
+			return action.payload.data || [];
 		default:
 			return state;
 	}
