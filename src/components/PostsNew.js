@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { Link } from 'react-router';
@@ -7,6 +8,29 @@ import { createPost } from '../actions/index';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const FIELD_TYPES = {
+	TextField
+}
+
+const FIELDS = {
+	title: {
+		type: 'TextField',
+		label: 'Title'
+	},
+	categories: {
+		type: 'TextField',
+		label: 'Categories'
+	},
+	content: {
+		type: 'TextField',
+		label: 'Content',
+		options: {
+			multiLine: true,
+			rows: 4
+		}
+	}
+};
+
 class PostsNew extends Component {
 	static contextTypes = {
 		router: PropTypes.object
@@ -15,54 +39,36 @@ class PostsNew extends Component {
 	onFormSubmit(props) {
 		this.props.createPost(props)
 			.then(() => {
-				// Blog post has been created, navigate user to
-				// the index by calling this.context.router.push
 				this.context.router.push('/');
 			});
 	}
 
+	renderField(config, field) {
+		const fieldHelper = this.props.fields[field];
+		const properties = config.options || {};
+
+		const Tag = FIELD_TYPES[config.type];
+
+		return (
+			<div key={field}>
+				<Tag
+					className="input-field"
+					floatingLabelText={config.label}
+					errorText={fieldHelper.touched ? fieldHelper.error : undefined}
+					{...properties}
+					{...fieldHelper}
+				/>
+			</div>
+		);
+	}
+
 	render() {
-		const {
-			fields: {
-				title,
-				categories,
-				content
-			},
-			handleSubmit
-		} = this.props;
+		const { handleSubmit } = this.props;
 
 		return (
 			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
 				<h3>Create New Post</h3>
-				<div>
-					<TextField
-						className="input-field"
-						floatingLabelText="Title"
-						errorText={title.touched ? title.error : undefined}
-						{...title}
-					/>
-				</div>
-
-				<div>
-					<TextField
-						className="input-field"
-						floatingLabelText="Categories"
-						errorText={categories.touched ? categories.error : undefined}
-						{...categories}
-					/>
-				</div>
-
-				<div>
-					<TextField
-						className="input-field"
-						floatingLabelText="Content"
-						multiLine={true}
-						rows={4}
-						errorText={content.touched ? content.error : undefined}
-						{...content}
-					/>
-				</div>
-
+				{ _.map(FIELDS, this.renderField.bind(this)) }
 				<div className="form-buttons">
 					<RaisedButton className="submit-form-button" type="submit" label="Submit" primary={true} />
 
@@ -78,23 +84,17 @@ class PostsNew extends Component {
 function validate(values) {
 	const errors = {};
 
-	if (!values.title) {
-		errors.title = 'Enter a title';
-	}
-
-	if (!values.categories) {
-		errors.categories = 'Enter a category'
-	}
-
-	if (!values.content) {
-		errors.content = 'Enter a post body'
-	}
+	_.each(FIELDS, (options, field) => {
+		if (!values[field]) {
+			errors[field] = `Enter ${field}`;
+		}
+	});
 
 	return errors;
 }
 
 export default reduxForm({
 	form: 'PostsNew',
-	fields: ['title', 'categories', 'content'],
+	fields: _.keys(FIELDS),
 	validate
 }, null, { createPost })(PostsNew);
